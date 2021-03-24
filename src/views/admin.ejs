@@ -21,9 +21,12 @@
     </section>
 
     <script>
-        const del = document.querySelector('a.del');
-        del.addEventListener('click',(e)=>{
-            const endpoint  = `/admin/delete/${del.dataset.doc}`;
+        const del = document.querySelectorAll('a.del');
+        const delLink = [].slice.call(del);
+
+        delLink.forEach((element,index) => {
+            element.addEventListener('click',(e)=>{
+            const endpoint  = `/admin/delete/${element.dataset.doc}`;
 
             fetch(endpoint,{
                 method:'DELETE'
@@ -34,6 +37,7 @@
                 window.location.href = data.link;
             })
             .catch(err=> console.log(err));
+        })
         });
 
 </script>
