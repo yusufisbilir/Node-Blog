@@ -15,6 +15,7 @@ mongoose.connect(dbUrl,{useNewUrlParser:true, useUnifiedTopology:true})
     })
 
 app.use(express.static('public'));
+app.use(express.urlencoded({extended:true}));
 app.set('view engine','ejs');
 
 app.get('/', (req, res) => {
@@ -33,6 +34,30 @@ app.get('/blog/:id',(req,res)=>{
             res.render('blog',{blog:result,title:'example'})
         }).catch(err=>{
             app.use((req,res)=>res.status(404).render('404',{title:'Error Page'}));
+        })
+});
+
+app.get('/admin',(req,res)=>{
+    Blog.find().sort({createdAt:-1})
+        .then(result=>{
+            res.render('admin',{title:"Admin",blogs:result})
+        }).catch(err=>{
+            console.log(err);
+        })
+});
+
+app.get('/admin/add',(req,res)=>{
+    res.render('add',{title:"New Writing"})
+})
+
+app.post('/admin/add',(req, res) => {
+    const blog = new Blog(req.body);
+    blog.save()
+        .then(result=>{
+            res.redirect('/admin')
+        })
+        .catch(err=>{
+            console.log(err);
         })
 });
 

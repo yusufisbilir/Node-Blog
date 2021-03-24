@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%-include('./inc/head') %>
+</head>
+<body>
+    <%-include('./inc/nav') %>
+    <section>
+        <a href="/admin/add">Add New Writing</a>
+        <h1>Blogs</h1>
+        <ul>
+            <% blogs.forEach(blog => { %>
+                <ul>
+                    <li>
+                        <p><%= blog.title %> </p>
+                        <a href="">Delete</a>
+                    </li>
+                </ul>
+            <% }) %>
+        </ul>
+    </section>
+</body>
+</html>
