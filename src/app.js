@@ -18,7 +18,12 @@ app.use(express.static('public'));
 app.set('view engine','ejs');
 
 app.get('/', (req, res) => {
-    res.render('index',{title:'Main Page'})
+    Blog.find().sort({createdAt:-1})
+        .then(result=>{
+            res.render('index',{title:"Main Page",blogs:result})
+        }).catch(err=>{
+            console.log(err);
+        })
 });
 
 app.get('/about', (req, res) => {

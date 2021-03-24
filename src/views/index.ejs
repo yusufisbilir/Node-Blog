@@ -8,18 +8,14 @@
     <section>
         <h1>Blogs</h1>
         <ul>
-            <li>
-                <a href="#">Blog 1</a>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, atque?</p>
-            </li>
-            <li>
-                <a href="#">Blog 2</a>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, atque?</p>
-            </li>
-            <li>
-                <a href="#">Blog 3</a>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, atque?</p>
-            </li>
+            <% blogs.forEach(blog => { %>
+                <ul>
+                    <li>
+                        <a href="#">blog.title</a>
+                        <p>blog.short</p>
+                    </li>
+                </ul>
+            <% }) %>
         </ul>
     </section>
 </body>
