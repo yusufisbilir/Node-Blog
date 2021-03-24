@@ -26,6 +26,16 @@ app.get('/', (req, res) => {
         })
 });
 
+app.get('/blog/:id',(req,res)=>{
+    const id = req.params.id;
+    Blog.findById(id)
+        .then(result=>{
+            res.render('blog',{blog:result,title:'example'})
+        }).catch(err=>{
+            app.use((req,res)=>res.status(404).render('404',{title:'Error Page'}));
+        })
+});
+
 app.get('/about', (req, res) => {
     res.render('about',{title:'About'})
 });

@@ -11,8 +11,8 @@
             <% blogs.forEach(blog => { %>
                 <ul>
                     <li>
-                        <a href="#">blog.title</a>
-                        <p>blog.short</p>
+                        <a href="/blog/<%= blog._id %> "><%= blog.title %> </a>
+                        <p><%= blog.short %> </p>
                     </li>
                 </ul>
             <% }) %>
