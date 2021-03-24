@@ -1,15 +1,18 @@
-const express = require('express')
-const app = express()
-const port = 3000
+const { render } = require('ejs');
+const express = require('express');
+const app = express();
+const port = 3000;
+
+app.set('view engine','ejs')
 
 app.get('/', (req, res) => {
-    res.sendFile("./views/index.html",{root:__dirname})
+    res.render('index',{title:'Main Page'})
 });
 
 app.get('/about', (req, res) => {
-    res.sendFile("./views/about.html",{root:__dirname})
+    res.render('about',{title:'About'})
 });
 
-app.use((req,res)=>res.status(404).sendfile('./views/404.html',{root:__dirname}));
+app.use((req,res)=>res.status(404).render('404',{title:'Error Page'}));
 
-app.listen(port, () => console.log(` app listening on port ${port}`))   
+app.listen(port, () => console.log(` app listening on port ${port}`));
