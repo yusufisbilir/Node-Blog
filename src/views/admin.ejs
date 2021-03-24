@@ -13,11 +13,29 @@
                 <ul>
                     <li>
                         <p><%= blog.title %> </p>
-                        <a href="">Delete</a>
+                        <a class="del" data-doc="<%= blog._id %>">Delete</a>
                     </li>
                 </ul>
             <% }) %>
         </ul>
     </section>
+
+    <script>
+        const del = document.querySelector('a.del');
+        del.addEventListener('click',(e)=>{
+            const endpoint  = `/admin/delete/${del.dataset.doc}`;
+
+            fetch(endpoint,{
+                method:'DELETE'
+            }).then((response)=>{
+                response.json()
+            })
+            .then((data)=>{
+                window.location.href = data.link;
+            })
+            .catch(err=> console.log(err));
+        });
+
+</script>
 </body>
 </html>
