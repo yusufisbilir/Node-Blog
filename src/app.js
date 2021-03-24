@@ -17,20 +17,6 @@ mongoose.connect(dbUrl,{useNewUrlParser:true, useUnifiedTopology:true})
 app.use(express.static('public'));
 app.set('view engine','ejs');
 
-app.get('/add',(req,res)=>{
-    const blog = new Blog({
-        title:'new title',
-        short:'short description',
-        long:'writing'
-    });
-    
-    blog.save()
-        .then(result =>{
-            res.send(result);
-        })
-        .catch(err => {console.log(err)});
-});
-
 app.get('/', (req, res) => {
     res.render('index',{title:'Main Page'})
 });
