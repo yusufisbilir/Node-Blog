@@ -3,6 +3,11 @@
     <ul>
         <li><a href="/">Main Page</a></li>
         <li><a href="/about">About</a></li>
-        <li><a href="/login">Login</a></a></li>
+        <% if (user) { %>
+            <li><a href="/logout">Logout</a></a></li>
+        <% } else { %>
+            <li><a href="/login">Login</a></a></li>
+            <% } %> 
+         
     </ul>
 </nav>
