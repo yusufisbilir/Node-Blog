@@ -1,4 +1,3 @@
-const { render } = require('ejs');
 const express = require('express');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
@@ -6,12 +5,14 @@ const adminRoutes = require('./routes/adminRoutes');
 const blogRoutes = require('./routes/blogRoutes');
 const authRoutes = require('./routes/authRoutes');
 const {requireAuth, checkUser} = require('./middlewares/authMiddleware');
+const dotenv = require('dotenv');
+dotenv.config();
 
 const app = express();
 const port = 3000;
 
-const dbUrl = 'mongodb+srv://yusufisbilir:1234@nodejs-blog.691wr.mongodb.net/node-blog?retryWrites=true&w=majority';
-mongoose.connect(dbUrl,{useNewUrlParser:true, useUnifiedTopology:true, useCreateIndex:true})
+
+mongoose.connect(process.env.DB_CONNECT,{useNewUrlParser:true, useUnifiedTopology:true, useCreateIndex:true})
     .then((result)=>{
         app.listen(port);
     }).catch((err)=>{
